@@ -3,7 +3,7 @@ A Python-based tool for parsing and analyzing AWS VPC Flow Logs and mapping them
 
 ## Problem Statement
 Write a program that can parse a file containing [flow log data](./flow_logs.txt) and maps each row to a tag based on a [lookup table](./lookup.csv).
-<!-- Create a program that parses AWS VPC Flow Logs (Version 2) and maps each entry to specific tags based on a lookup table. The program should read port/protocol combinations from a CSV file, match them against the flow logs, and generate statistics about the matches. The implementation must handle files up to 10MB and support up to 10,000 tag mappings while using only Python standard libraries. -->
+
 
 ## Overview
 
@@ -61,10 +61,15 @@ dstport,protocol,tag
 ```
 
 ### Flow Log Format:
-Supports AWS VPC Flow Logs Version 2 format only. Example:
+Supports AWS VPC Flow Logs Version 2 format only.
+```
+version account-id interface-id srcaddr dstaddr srcport dstport protocol packets bytes start end action log-status
+```
+ Example:
 ```
 2 123456789012 eni-1234567890 10.0.1.4 10.0.2.5 443 49152 6 25 1800 1636375200 1636375300 ACCEPT OK
 ```
+Reference: https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-default
 
 ### Output Format:
 The tool generates a text file containing:
