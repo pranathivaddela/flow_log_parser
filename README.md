@@ -1,14 +1,13 @@
-# Flow Log Analyzer
-
-A Python-based tool for analyzing flow logs and mapping them to predefined tags based on port and protocol combinations.
+# Flow Log Parser
+A Python-based tool for parsing and analyzing AWS VPC Flow Logs and mapping them to predefined tags based on port and protocol combinations.
 
 ## Problem Statement
-Write a program that can parse a file containing flow log data and maps each row to a tag based on a lookup table.
+Write a program that can parse a file containing [flow log data](./flow_logs.txt) and maps each row to a tag based on a [lookup table](./lookup.csv).
 <!-- Create a program that parses AWS VPC Flow Logs (Version 2) and maps each entry to specific tags based on a lookup table. The program should read port/protocol combinations from a CSV file, match them against the flow logs, and generate statistics about the matches. The implementation must handle files up to 10MB and support up to 10,000 tag mappings while using only Python standard libraries. -->
 
 ## Overview
 
-The Flow Log Analyzer processes AWS VPC flow logs and maps each entry to tags based on destination port and protocol combinations. It supports custom tag mappings through a lookup file and provides detailed statistics about traffic patterns.
+The Flow Log Parser processes AWS VPC flow logs and maps each entry to tags based on destination port and protocol combinations. It supports custom tag mappings through a lookup file and provides detailed statistics about traffic patterns.
 
 ## Features
 
@@ -30,8 +29,8 @@ The Flow Log Analyzer processes AWS VPC flow logs and maps each entry to tags ba
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd flow-log-analyzer
+git clone https://github.com/pranathivaddela/flow_log_parser.git
+cd flow-log-parser
 ```
 
 ## Usage
@@ -87,12 +86,7 @@ Port,Protocol,Count
 23,tcp,3
 25,tcp,2
 ```
-
-## Assumptions and Limitations
-
 ## Assumptions
-
-
 1. Input Files:
    - All input files are ASCII text files
    - Files are well-formed (proper CSV format for lookup table)
@@ -118,23 +112,37 @@ Port,Protocol,Count
 
 
 ## Testing
-
-The project includes comprehensive test cases covering:
-- Basic functionality
-- Protocol normalization
-- Tag mapping validation
-- Error handling
-- File Size verification
-- Edge cases
-
+This program allows do perform a comprehensive testing using Python's unittest framework.
 To run tests:
 ```bash
-python -m unittest test_flow_log_analyzer.py -v
+python -m unittest test_flow_log_analyzer.py
 ```
+### Test Coverage
+The test suite covers:
+- Protocol handling (mapping, fallback behavior, case sensitivity)
+- Flow log parsing (valid and invalid formats)
+- Analysis logic (tag counting, port/protocol combinations)
+- File operations (missing/invalid files, output generation)
+- Error conditions and edge cases
 
 ## Performance Considerations
 - Uses dictionary-based lookups for O(1) performance
 - Processes files line by line to minimize memory usage
 - Uses built-in Python libraries to avoid dependencies
 
+## Additional: Test Data Generator
 
+The project includes a test data generator script (`generate_test_data.py`) for performance testing. This 
+- Generates realistic VPC Flow Log entries
+- Creates lookup tables with configurable number of entries
+- Produces files meeting size requirements (>10MB for logs, >10,000 entries for lookup)
+
+### Usage
+```bash
+# Generate test data files
+python generate_test_data.py
+```
+
+### Generated Files
+1. Lookup Table (`large_lookup.csv`): Over 10,000 unique port/protocol combinations
+2. Flow Logs (`large_flow_data_log.txt`): Over 10MB of valid VPC flow log data
