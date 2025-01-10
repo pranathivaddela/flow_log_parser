@@ -46,7 +46,7 @@ python flow_log_parser.py <lookup_file> <flow_logs> <output_file>
 
 ### Example:
 ```bash
-python flow_log_parser.py mappings.csv flow_logs.txt results.txt
+python flow_log_parser.py lookup.csv flow_logs.txt results.txt
 ```
 
 ## File Formats
@@ -94,10 +94,11 @@ Port,Protocol,Count
 
 2. Protocol Handling:
    * Supports both protocol names (tcp, udp, icmp) and IANA protocol numbers
-   * Protocol numbers are mapped according to IANA protocol number registry (https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml):
+   * I have created a [protocol mapping file](./protocol_mappings.csv). Protocol numbers are mapped according to IANA protocol number registry (https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml). If the protocol file is not mentioned,it will consider the default dictionary mapping that I have defined:
       * 6 = tcp (Transmission Control Protocol)
       * 17 = udp (User Datagram Protocol)
       * 1 = icmp (Internet Control Message Protocol)
+    
    * Protocol matching is case-insensitive
 
 3. Tag Behavior:
@@ -132,7 +133,7 @@ The test suite covers:
 
 ## Additional: Test Data Generator for Performance Testing
 
-The project includes a test data generator script (`generate_test_data.py`) for performance testing. This 
+The project includes a [test data generator script](./generate_test_data.py) for performance testing. This 
 - Generates realistic VPC Flow Log entries
 - Creates lookup tables with configurable number of entries
 - Produces files meeting size requirements (>10MB for logs, >10,000 entries for lookup)
