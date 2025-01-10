@@ -1,0 +1,22 @@
+protocol_number,protocol_name,description
+0,hopopt,IPv6 Hop-by-Hop Option
+1,icmp,Internet Control Message Protocol
+2,igmp,Internet Group Management Protocol
+3,ggp,Gateway-to-Gateway Protocol
+4,ipv4,IPv4 encapsulation
+5,st,Stream
+6,tcp,Transmission Control Protocol
+17,udp,User Datagram Protocol
+41,ipv6,IPv6 encapsulation
+43,ipv6-route,Routing Header for IPv6
+44,ipv6-frag,Fragment Header for IPv6
+47,gre,Generic Routing Encapsulation
+50,esp,Encapsulating Security Payload
+51,ah,Authentication Header
+58,ipv6-icmp,ICMP for IPv6
+59,ipv6-nonxt,No Next Header for IPv6
+60,ipv6-opts,Destination Options for IPv6
+88,eigrp,EIGRP
+89,ospf,OSPF
+103,pim,Protocol Independent Multicast
+132,sctp,Stream Control Transmission Protocol
