@@ -100,7 +100,7 @@ Port,Protocol,Count
       * 1 = icmp (Internet Control Message Protocol)
     
    * Protocol matching is case-insensitive
-
+    ( Reference: https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-fields )
 3. Tag Behavior:
    - Duplicate port/protocol combinations in lookup table are treated as errors
    - Empty or whitespace-only tags are not allowed
