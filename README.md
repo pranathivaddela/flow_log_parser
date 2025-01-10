@@ -36,7 +36,7 @@ cd flow-log-parser
 ## Usage
 
 ```bash
-python flow_log_analyzer.py <lookup_file> <flow_logs> <output_file>
+python flow_log_parser.py <lookup_file> <flow_logs> <output_file>
 ```
 
 ### Parameters:
@@ -46,7 +46,7 @@ python flow_log_analyzer.py <lookup_file> <flow_logs> <output_file>
 
 ### Example:
 ```bash
-python flow_log_analyzer.py mappings.csv flow_logs.txt results.txt
+python flow_log_parser.py mappings.csv flow_logs.txt results.txt
 ```
 
 ## File Formats
@@ -115,7 +115,7 @@ Port,Protocol,Count
 This program allows do perform a comprehensive testing using Python's unittest framework.
 To run tests:
 ```bash
-python -m unittest test_flow_log_analyzer.py
+python -m unittest test_flow_log_parser.py
 ```
 ### Test Coverage
 The test suite covers:
@@ -130,7 +130,7 @@ The test suite covers:
 - Processes files line by line to minimize memory usage
 - Uses built-in Python libraries to avoid dependencies
 
-## Additional: Test Data Generator
+## Additional: Test Data Generator for Performance Testing
 
 The project includes a test data generator script (`generate_test_data.py`) for performance testing. This 
 - Generates realistic VPC Flow Log entries
@@ -146,3 +146,18 @@ python generate_test_data.py
 ### Generated Files
 1. Lookup Table (`large_lookup.csv`): Over 10,000 unique port/protocol combinations
 2. Flow Logs (`large_flow_data_log.txt`): Over 10MB of valid VPC flow log data
+
+### Customization
+You can modify generation parameters in the script:
+```python
+# Generate larger test files
+generator.generate_lookup_table(
+    num_entries=20000,    # for more lookup entries
+    output_file='large_lookup.csv'
+)
+
+generator.generate_flow_log(
+    min_size_mb=50,       # for larger log file
+    output_file='large_flow_data_log.txt'
+)
+```
